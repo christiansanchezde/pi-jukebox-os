@@ -1,0 +1,14 @@
+[Unit]
+Description=RFID Jukebox Service
+After=network.target sound.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/bin/jukebox.py
+Restart=always
+RestartSec=5
+User=root
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

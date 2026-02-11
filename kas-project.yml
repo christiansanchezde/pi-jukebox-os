@@ -1,0 +1,69 @@
+header:
+  version: 14
+
+machine: raspberrypi3
+distro: poky
+
+repos:
+  # Yocto Core (Scarthgap Release)
+  poky:
+    url: "https://git.yoctoproject.org/poky"
+    refspec: "scarthgap"
+    layers:
+      meta:
+      meta-poky:
+      meta-yocto-bsp:
+
+  # OpenEmbedded Dependencies
+  # We need meta-python (for libraries) and meta-multimedia (for VLC)
+  meta-openembedded:
+    url: "https://git.openembedded.org/meta-openembedded"
+    refspec: "scarthgap"
+    layers:
+      meta-oe:
+      meta-python:
+      meta-multimedia:
+      meta-networking:
+
+  # Raspberry Pi BSP
+  meta-raspberrypi:
+    url: "https://git.yoctoproject.org/meta-raspberrypi"
+    refspec: "scarthgap"
+    layers:
+      .:
+
+  # Your Custom Layer
+  meta-jukebox:
+    path: layers/meta-jukebox
+    layers:
+      .:
+
+bblayers_conf_header:
+  standard: |
+    POKY_BBLAYERS_CONF_VERSION = "2"
+
+local_conf_header:
+  standard: |
+    # --- System Configuration ---
+    INIT_MANAGER = "systemd"
+    systemd_default_target = "multi-user.target"
+    
+    # --- Hardware Configuration (Raspberry Pi) ---
+    # Enable SPI for the RFID Reader
+    ENABLE_SPI_BUS = "1"
+    # Enable UART (Serial Console) for debugging if needed
+    ENABLE_UART = "1"
+    
+    # --- License Management ---
+    # VLC and some codecs require commercial license flags
+    LICENSE_FLAGS_ACCEPTED = "commercial synaptics-killswitch"
+    
+    # --- Disk Space Management ---
+    INHERIT += "rm_work"
+    
+    # --- Build Performance ---
+    BB_NUMBER_THREADS = "${@os.cpu_count()}"
+    PARALLEL_MAKE = "-j ${@os.cpu_count()}"
+
+# The default target to build
+target: jukebox-image

@@ -1,0 +1,14 @@
+[Unit]
+Description=Professional RFID Jukebox
+After=network.target sound.target
+
+[Service]
+Type=simple
+User=jukebox
+WorkingDirectory=/usr/share/jukebox
+ExecStart=/usr/share/jukebox/jukebox_start.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
