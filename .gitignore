@@ -22,13 +22,13 @@ tmp/
 # Local Development Directories
 # ----------------------------------------------------------------------
 src/
-layers/
 
 # ----------------------------------------------------------------------
 # External Repositories (Managed by Kas)
 # ----------------------------------------------------------------------
 poky/
 meta-openembedded/
+meta-raspberrypi/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
