@@ -2,10 +2,14 @@
 
 **A production-grade, RFID-controlled music player for children, built on Embedded Linux.**
 
+<img src="./docs/img/Jukebox.jpg" alt="Jukebox" width="80%"/>
+
+*Figure 1: Jukebox*
+
 ## 📖 The Story
 This project started as a summer vacation experiment to build a music player for my children. Originally, it was a "vibe-coded" prototype running on a standard Raspberry Pi OS, held together by manual scripts and SD card backups.
 
-However, the "customers" (my kids) started requesting feature updates and bug fixes. I realized that manually patching a live device was not sustainable. To solve this—and to sharpen my professional toolkit—I migrated the entire stack to **The Yocto Project**.
+However, the "customers" (my kids) started requesting feature updates and bug fixes. I realized that manually patching a live device was not sustainable. To solve this and to sharpen my professional toolkit—I migrated the entire stack to **The Yocto Project**.
 
 This repository now represents a fully reproducible, embedded Linux appliance. It demonstrates how to take a Python prototype and harden it into a custom OS image with automated builds, systemd service management, and proper dependency handling.
 
@@ -70,8 +74,13 @@ Since this is a read-only capable system, music files are not baked into the ima
 4.  Edit `/usr/bin/mappings.cfg` to link your RFID tags to those folders.
 
 ## 📂 Resources
-*   **Schematics:** [Link to your schematics folder or image]
-*   **3D Printed Case:** [Link to STL files if you have them]
+*   **Schematics:**
+
+<img src="./docs/img/schematic.png" alt="Jukebox Hardware Schematic" width="80%"/>
+
+*Figure 2: Jukebox Hardware Schematic*
+
+*   **[3D Printed Case](./docs/case)**  
 
 
 ## 🔗 Additional Links
